@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'littlelemon.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'littlelemonDB',  
+        'NAME': 'littlelemonDB',  #Enter your database name
         'USER': 'root',  
-        'PASSWORD': 'OkuKomputer1!',  
+        'PASSWORD': '***********',  #Enter your db password. Makemigration and migrate afterwards.
         'HOST': '127.0.0.1',  
         'PORT': '3306',  
         'OPTIONS': {  
