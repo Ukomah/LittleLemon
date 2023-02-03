@@ -20,16 +20,19 @@ def about(request):
     return render(request, 'about.html')
 
 
-class UserRegistrationView(generics.CreateAPIView):
+class UserRegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+    
 
 class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
+    
     
 def booking_list(request):
     bookings = Booking.objects.all()
@@ -82,8 +85,6 @@ def bookings(request):
         'slots_left': slots_left,
     }
     return render(request, 'book.html', context)
-
-
 
 
 
