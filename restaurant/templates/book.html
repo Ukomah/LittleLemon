@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+  <article>
+    <h1>Make a reservation</h1>
+    <!--Begin row-->
+    <div class="row">
+      <!--Begin col-->
+      <div class="column">
+        {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+          </ul>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="no_of_guest">Number of Guests:</label>
+              <input type="number" class="form-control" id="no_of_guest" name="no_of_guest" min="0" max="6">
+            </div>
+            <div class="form-group">
+              <label for="bookingDate">Booking Date and Time:</label>
+              <input type="datetime-local" class="form-control" id="bookingDate" name="bookingDate">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+          <table>
+            <h3>Slots remaining for specified hours</h3>
+            <table class="table">
+             <thead>
+               <tr style="text-align: center">
+                 <th>Date and time</th>
+                 <th>Slots left</th>
+               </tr>
+             </thead>
+             <tbody>
+               {% for key, value in hour_slots.items %} 
+                 <tr style="text-align: center">
+                   <td>{{ key }}</td>
+                   <td>{{ value }}</td>
+                 </tr>
+                 
+               {% endfor %}
+               
+             </tbody>
+           </table>
+
+
+      
+
+  </article>
+</section>
+
+{% endblock %}
+

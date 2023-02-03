@@ -214,6 +214,9 @@ footer p {
 
   }
 
+ table{
+    text-align: center
+  }
 
   .videowrap {
 	position: relative;
