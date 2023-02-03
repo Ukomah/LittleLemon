@@ -5,7 +5,6 @@ from .models import Booking, Menu
 from .serializers import BookingSerializer, MenuSerializer, UserSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
-from rest_framework import generics
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Sum
@@ -107,7 +106,3 @@ def display_menu_item(request, pk=None):
     else: 
         menu_item = "" 
     return render(request, 'menu_item.html', {"menu_item": menu_item}) 
-
-
-
-
