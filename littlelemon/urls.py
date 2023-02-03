@@ -22,6 +22,9 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register(r'bookings', views.BookingViewSet)
 router.register(r'menuItems', views.MenuItemsViewSet)
+router.register(r'register', views.UserRegistrationViewSet)
+
+
 
 
 

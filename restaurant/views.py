@@ -5,7 +5,6 @@ from .models import Booking, Menu
 from .serializers import BookingSerializer, MenuSerializer, UserSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
-from rest_framework import generics
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Sum
@@ -20,16 +19,19 @@ def about(request):
     return render(request, 'about.html')
 
 
-class UserRegistrationView(generics.CreateAPIView):
+class UserRegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+    
 
 class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
+    
     
 def booking_list(request):
     bookings = Booking.objects.all()
@@ -85,8 +87,6 @@ def bookings(request):
 
 
 
-
-
         
 class MenuItemsViewSet(viewsets.ModelViewSet):
     queryset = Menu.objects.all()
@@ -95,10 +95,15 @@ class MenuItemsViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication]
     
     
+    
+    
 def menu(request):
     menu_data = Menu.objects.all()
     main_data = {"menu": menu_data}
     return render(request, 'menu.html', {"menu": main_data})
+
+
+
 
 def display_menu_item(request, pk=None): 
     if pk: 
@@ -106,7 +111,3 @@ def display_menu_item(request, pk=None):
     else: 
         menu_item = "" 
     return render(request, 'menu_item.html', {"menu_item": menu_item}) 
-
-
-
-
