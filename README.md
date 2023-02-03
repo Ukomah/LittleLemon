@@ -1,5 +1,7 @@
 # LittleLemon
 
+### Use pipenv
+
 ### API endpoints to checkout
 1. /api/bookings/
 2. /api/registration/
